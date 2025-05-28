@@ -1,0 +1,98 @@
+.accordion {
+    margin-bottom: var(--space-);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-base);
+    overflow: hidden;
+    background: var(--card-color);
+}
+
+.accordionHeader {
+    width: 100%;
+    padding: var(--space-medium) var(--space-large);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--base-font-size);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.accordionHeader:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-1px);
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    gap: var(--space-small);
+}
+
+.icon {
+    font-size: var(--medium-font-size);
+}
+
+.title {
+    font-size: var(--base-font-size);
+    font-weight: bold;
+}
+
+.chevron {
+    transition: transform 0.3s ease;
+    font-size: var(--small-font-size);
+    font-weight: bold;
+}
+
+.chevron.open {
+    transform: rotate(180deg);
+}
+
+.accordionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    background: var(--card-color);
+}
+
+.accordionContent.open {
+    max-height: 1000px;
+    transition: max-height 0.3s ease-in, padding 0.3s ease-in;
+}
+
+.accordionBody {
+    padding: 0;
+    transition: padding 0.3s ease;
+}
+
+.accordionContent.open .accordionBody {
+    padding: var(--space-medium);
+}
+
+/* Hover effects */
+.accordion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .accordionHeader {
+        padding: var(--space-medium);
+    }
+
+    .title {
+        font-size: var(--small-font-size);
+    }
+
+    .icon {
+        font-size: var(--base-font-size);
+    }
+
+    .accordionContent.open .accordionBody {
+        padding: var(--space-medium);
+    }
+}
