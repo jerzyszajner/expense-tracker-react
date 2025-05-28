@@ -1,12 +1,7 @@
 import styles from "./App.module.css";
-import Accordion from "./components/Accordion/Accordion";
 
 function App() {
-  return (
-    <>
-      <Accordion />
-    </>
-  );
+  return <></>;
 }
 
 export default App;
