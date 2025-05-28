@@ -1,33 +1,26 @@
-import Button from "./components/Button/Button";
-import Card from "./components/Card/Card";
-import Modal from "./components/Modal/Modal";
-import useModal from "./hooks/useModal";
-import "./App.css";
+import styles from "./App.module.css";
+import { useState } from "react";
+import ConfirmationModal from "./components/ConfirmationModal/ConfirmationModal";
 
 function App() {
-  // Test modal hook
-  const testModal = useModal();
+  const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="app">
-      <Card>
-        <h2>Testing Modal Component</h2>
-        <Button onClick={testModal.openModal}>Open Test Modal</Button>
-      </Card>
+    <div>
+      <h1>Test Modal</h1>
 
-      {/* Test Modal */}
-      <Modal
-        isOpen={testModal.isOpen}
-        onClose={testModal.closeModal}
-        title="Test Modal"
-      >
-        <ul>
-          <li>Clicking the X button</li>
-          <li>Pressing ESC key</li>
-          <li>Clicking outside the modal</li>
-        </ul>
-        <Button onClick={testModal.closeModal}>Close from inside</Button>
-      </Modal>
+      <button onClick={() => setShowModal(true)}>Open Modal</button>
+
+      <ConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={() => {
+          alert("Confirmed!");
+          setShowModal(false);
+        }}
+        title="Test"
+        message="This is a test modal"
+      />
     </div>
   );
 }
