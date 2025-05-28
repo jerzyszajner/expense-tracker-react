@@ -1,0 +1,18 @@
+.emptyMessage {
+    text-align: center;
+    padding: var(--space-x-large);
+    background: var(--card-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-base);
+}
+
+.icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--space-medium);
+}
+
+.text {
+    font-size: var(--base-font-size);
+    color: var(--secondary-color);
+}

@@ -1,10 +1,10 @@
 import "./App.css";
-import Card from "./components/Card/Card";
+import EmptyMessage from "./components/EmptyMessage/EmptyMessage";
 
 function App() {
   return (
     <>
-      <Card />
+      <EmptyMessage />
     </>
   );
 }
