@@ -1,0 +1,43 @@
+.formGroup {
+  margin-bottom: var(--space-medium);
+}
+
+.label {
+  display: block;
+  font-size: var(--base-font-size);
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: var(--space-small);
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-small);
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius-small);
+  font-size: var(--base-font-size);
+  transition: border-color 0.3s ease;
+  background-color: var(--card-color);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.input.error {
+  border-color: var(--text-error);
+  background-color: #fdf2f2;
+}
+
+.input.error:focus {
+  border-color: #c0392b;
+}
+
+.errorText {
+  display: block;
+  color: var(--text-error);
+  font-size: var(--small-font-size);
+  margin-top: var(--space-small);
+  font-weight: 500;
+}
