@@ -1,0 +1,141 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-color);
+    border-radius: var(--border-radius-medium);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-base);
+    margin-bottom: var(--space-large);
+}
+
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+}
+
+.headerRow {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.headerCell {
+    padding: var(--space-small) var(--space-medium);
+    text-align: left;
+    font-weight: bold;
+    font-size: var(--base-font-size);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.headerCell:last-child {
+    border-right: none;
+}
+
+.tableBody {
+    background: var(--card-color);
+}
+
+/* Desktop widths - only when all columns are visible */
+.headerCell:nth-child(1) {
+    width: 80px;
+}
+
+/* ID */
+.headerCell:nth-child(2) {
+    width: auto;
+}
+
+/* Title - Remaining space */
+.headerCell:nth-child(3) {
+    width: 100px;
+}
+
+/* Amount */
+.headerCell:nth-child(4) {
+    width: 100px;
+}
+
+/* Date */
+.headerCell:nth-child(5) {
+    width: 120px;
+}
+
+/* Category */
+.headerCell:nth-child(6) {
+    width: 140px;
+}
+
+/* Actions */
+
+/* Tablet - Hide ID and Date */
+@media (max-width: 768px) {
+    .headerCell:nth-child(1) {
+        display: none;
+    }
+
+    /* ID */
+    .headerCell:nth-child(4) {
+        display: none;
+    }
+
+    /* Date */
+
+    .headerCell:nth-child(2) {
+        width: 40%;
+    }
+
+    /* Title */
+    .headerCell:nth-child(3) {
+        width: 20%;
+    }
+
+    /* Amount */
+    .headerCell:nth-child(5) {
+        width: 20%;
+    }
+
+    /* Category */
+    .headerCell:nth-child(6) {
+        width: 20%;
+    }
+
+    /* Actions */
+}
+
+/* Mobile - Hide ID, Date and Category */
+@media (max-width: 480px) {
+    .headerCell:nth-child(1) {
+        display: none;
+    }
+
+    /* ID */
+    .headerCell:nth-child(4) {
+        display: none;
+    }
+
+    /* Date */
+    .headerCell:nth-child(5) {
+        display: none;
+    }
+
+    /* Category */
+
+    .headerCell:nth-child(2) {
+        width: 50%;
+    }
+
+    /* Title */
+    .headerCell:nth-child(3) {
+        width: 25%;
+    }
+
+    /* Amount */
+    .headerCell:nth-child(6) {
+        width: 25%;
+    }
+
+    /* Actions */
+
+    .headerCell {
+        font-size: var(--small-font-size);
+        padding: 0.5rem 0.25rem;
+    }
+}

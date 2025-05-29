@@ -1,9 +1,10 @@
+import styles from "./App.module.css";
 import { useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 import TransactionForm from "./components/TransactionForm/TransactionForm";
-import styles from "./App.module.css";
+import TransactionList from "./components/TransactionList/TransactionList";
 
 function App() {
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
@@ -55,6 +56,16 @@ function App() {
         <TransactionForm
           type={getCurrentType()}
           onAdd={(transaction) => addTransaction(transaction, getCurrentType())}
+        />
+      </Card>
+
+      <Card>
+        <h2>Your {activeTab === "expenses" ? "Expenses" : "Incomes"}</h2>
+        <TransactionList
+          transactions={activeTab === "expenses" ? expenses : incomes}
+          type={getCurrentType()}
+          onDelete={(item) => console.log("Delete:", item.title)}
+          onEdit={(item) => console.log("Edit:", item.title)}
         />
       </Card>
 
