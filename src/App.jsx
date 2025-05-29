@@ -5,23 +5,54 @@ import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 import TransactionForm from "./components/TransactionForm/TransactionForm";
 import TransactionList from "./components/TransactionList/TransactionList";
+import useModal from "./hooks/useModal";
+import ConfirmationModal from "./components/ConfirmationModal/ConfirmationModal";
 
 function App() {
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
   const [incomes, setIncomes] = useLocalStorage("incomes", []);
   const [activeTab, setActiveTab] = useState("expenses");
 
+  // Modal state
+  const deleteModal = useModal();
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   // Helper function
   const getCurrentType = () =>
     activeTab === "expenses" ? "expense" : "income";
 
-  // Add transaction
+  // Add new transaction to appropriate list
   const addTransaction = (transaction, type) => {
     if (type === "expense") {
       setExpenses((prev) => [...prev, transaction]);
     } else {
       setIncomes((prev) => [...prev, transaction]);
     }
+  };
+
+  // Remove transaction from appropriate list
+  const deleteTransaction = (id, type) => {
+    if (type === "expense") {
+      setExpenses((prev) => prev.filter((item) => item.id !== id));
+    } else {
+      setIncomes((prev) => prev.filter((item) => item.id !== id));
+    }
+  };
+
+  // Show delete confirmation modal
+  const handleDeleteRequest = (item, type) => {
+    setItemToDelete({ ...item, type });
+    deleteModal.openModal();
+  };
+
+  const handleConfirmDelete = () => {
+    deleteTransaction(itemToDelete.id, itemToDelete.type);
+    setItemToDelete(null);
+  };
+
+  const handleCancelDelete = () => {
+    setItemToDelete(null);
+    deleteModal.closeModal();
   };
 
   return (
@@ -64,7 +95,7 @@ function App() {
         <TransactionList
           transactions={activeTab === "expenses" ? expenses : incomes}
           type={getCurrentType()}
-          onDelete={(item) => console.log("Delete:", item.title)}
+          onDelete={(item) => handleDeleteRequest(item, getCurrentType())}
           onEdit={(item) => console.log("Edit:", item.title)}
         />
       </Card>
@@ -73,6 +104,18 @@ function App() {
         <p>Expenses: {expenses.length}</p>
         <p>Incomes: {incomes.length}</p>
       </Card>
+
+      {/* Delete confirmation modal */}
+      <ConfirmationModal
+        isOpen={deleteModal.isOpen}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        title="Delete Item"
+        message={`Are you sure you want to delete "${itemToDelete?.title}"? This action cannot be undone.`}
+        confirmText="Delete"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 }
