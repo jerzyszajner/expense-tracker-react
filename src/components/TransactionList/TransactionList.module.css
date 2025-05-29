@@ -23,6 +23,7 @@
     font-weight: bold;
     font-size: var(--base-font-size);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .headerCell:last-child {
