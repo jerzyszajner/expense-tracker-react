@@ -4,12 +4,14 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import useModal from "./hooks/useModal";
 import TransactionForm from "./components/TransactionForm/TransactionForm";
 import TransactionList from "./components/TransactionList/TransactionList";
+import BalanceSummary from "./components/BalanceSummary/BalanceSummary";
 import ConfirmationModal from "./components/ConfirmationModal/ConfirmationModal";
 import Accordion from "./components/Accordion/Accordion";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 
 function App() {
+  // Core state management
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
   const [incomes, setIncomes] = useLocalStorage("incomes", []);
   const [editingTransaction, setEditingTransaction] = useState(null);
@@ -98,6 +100,11 @@ function App() {
     <div className={styles.app}>
       <h1 className={styles.appTitle}>Personal Finance Tracker</h1>
 
+      {/* Balance overview */}
+      <Card>
+        <BalanceSummary expenses={expenses} incomes={incomes} />
+      </Card>
+
       {/* Tab switcher */}
       <Card className={styles.tabContainer}>
         <div className={styles.tabSection}>
@@ -150,11 +157,6 @@ function App() {
           onDelete={(item) => handleDeleteRequest(item, getCurrentType())}
           onEdit={(item) => startEditing(item, getCurrentType())}
         />
-      </Card>
-
-      <Card>
-        <p>Expenses: {expenses.length}</p>
-        <p>Incomes: {incomes.length}</p>
       </Card>
 
       {/* Delete confirmation modal */}

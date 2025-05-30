@@ -1,0 +1,67 @@
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-medium);
+}
+
+.incomeCard,
+.expenseCard,
+.balanceCard {
+    background: var(--card-color);
+    padding: var(--space-small);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-base);
+    text-align: center;
+}
+
+.incomeCard {
+    border-left: 4px solid var(--text-success);
+}
+
+.expenseCard {
+    border-left: 4px solid var(--text-error);
+}
+
+.balanceCard.positive {
+    border-left: 4px solid var(--text-success);
+    background: linear-gradient(135deg, #f0f9ff, #ecfdf5);
+}
+
+.balanceCard.negative {
+    border-left: 4px solid var(--text-error);
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+}
+
+.cardTitle {
+    font-size: var(--base-font-size);
+    color: var(--secondary-color);
+    margin-bottom: var(--space-small);
+}
+
+.incomeAmount {
+    font-size: var(--large-font-size);
+    font-weight: bold;
+    color: var(--text-success);
+    margin: 0;
+}
+
+.expenseAmount {
+    font-size: var(--large-font-size);
+    font-weight: bold;
+    color: var(--text-error);
+    margin: 0;
+}
+
+.balanceAmount {
+    font-size: var(--large-font-size);
+    font-weight: bold;
+    margin: 0;
+}
+
+.positive .balanceAmount {
+    color: var(--text-success);
+}
+
+.negative .balanceAmount {
+    color: var(--text-error);
+}

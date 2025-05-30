@@ -1,5 +1,5 @@
 .accordion {
-    margin-bottom: var(--space-);
+    margin-bottom: var(--space-medium);
     border-radius: var(--border-radius-medium);
     box-shadow: var(--box-shadow-base);
     overflow: hidden;
