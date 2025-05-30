@@ -1,19 +1,35 @@
+/** App Component Styles - Main application layout and navigation */
+
+/* Main app container */
 .app {
-    max-width: 750px;
+    max-width: 700px;
     margin: 0 auto;
     padding: var(--space-medium);
     background-color: var(--secondary-color-light);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+/* Main title styling */
 .appTitle {
-    font-size: var(--large-font-size);
+    font-size: var(--medium-font-size);
     color: var(--primary-color);
     text-align: center;
     margin-bottom: var(--space-large);
     font-weight: bold;
 }
 
+/* Section title styling */
+.sectionTitle {
+    font-size: var(--base-font-size);
+    color: var(--primary-color);
+    margin-bottom: var(--space-small);
+    padding: 0 var(--space-xs) var(--space-xs);
+}
+
+/* Tab navigation container */
 .tabContainer {
     display: flex;
     justify-content: space-between;
@@ -22,11 +38,13 @@
     gap: var(--space-medium);
 }
 
+/* Tab section layout */
 .tabContainer .tabSection {
     display: flex;
     gap: var(--space-small);
 }
 
+/* Tab button styling */
 .tabContainer .tabSection .tabButton {
     padding: var(--space-small) var(--space-large);
     background: var(--secondary-color-light);
@@ -39,6 +57,7 @@
     transform: translateY(-1px);
 }
 
+/* Active tab styling */
 .tabContainer .tabSection .tabButton.activeTab {
     background: var(--primary-color);
     color: var(--text-light);
@@ -49,14 +68,10 @@
     background: var(--secondary-color);
 }
 
+/* Tablet responsive adjustments */
 @media (max-width: 768px) {
     .app {
         padding: var(--space-medium);
-    }
-
-    .appTitle {
-        font-size: var(--large-font-size);
-        margin-bottom: var(--space-medium);
     }
 
     .tabContainer {
@@ -76,17 +91,22 @@
     }
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 480px) {
     .app {
         padding: var(--space-small);
     }
 
-    .appTitle {
-        display: none;
+    .sectionTitle {
+        text-align: center;
     }
 
     .tabButton {
         padding: var(--space-xsmall) var(--space-medium);
         font-size: var(--xsmall-font-size);
+    }
+
+    .filterSection {
+        width: 100%;
     }
 }

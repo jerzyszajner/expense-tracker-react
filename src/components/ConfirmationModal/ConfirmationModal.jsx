@@ -11,11 +11,13 @@ const ConfirmationModal = ({
   cancelText = "Cancel",
   type = "danger", // danger, warning, info
 }) => {
+  // Handle confirmation and close modal
   const handleConfirm = () => {
     onConfirm();
     onClose();
   };
 
+  // Render confirmation dialog with action buttons
   return (
     <Modal
       isOpen={isOpen}

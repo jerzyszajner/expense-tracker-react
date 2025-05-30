@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-// Custom hook to sync state with localStorage
+// Custom hook for localStorage state synchronization
 const useLocalStorage = (key, initialValue) => {
+  // Initialize state from localStorage or default value
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -12,7 +13,7 @@ const useLocalStorage = (key, initialValue) => {
     }
   });
 
-  // Update localStorage whenever value changes
+  // Sync state changes to localStorage
   useEffect(() => {
     try {
       window.localStorage.setItem(key, JSON.stringify(storedValue));

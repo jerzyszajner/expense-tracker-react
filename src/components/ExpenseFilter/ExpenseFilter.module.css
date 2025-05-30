@@ -1,0 +1,58 @@
+/* ExpenseFilter Component Styles - Filter dropdown styling */
+
+/* Filter container */
+.expenseFilter {
+    background: var(--card-color);
+    border-radius: var(--border-radius-medium);
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+}
+
+.expenseFilter:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--secondary-color);
+}
+
+/* Filter label */
+.filterLabel {
+    display: block;
+    font-size: var(--base-font-size);
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--space-medium);
+}
+
+/* Filter dropdown styling */
+.filterSelect {
+    padding: var(--space-small) var(--space-medium);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius-small);
+    font-size: var(--base-font-size);
+    background: var(--card-color);
+    color: var(--primary-color);
+    min-width: 200px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.filterSelect:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* Option styling */
+.filterSelect option {
+    padding: var(--space-small);
+    text-transform: capitalize;
+    font-size: var(--base-font-size);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .filterSelect {
+        width: 100%;
+        min-width: auto;
+    }
+}

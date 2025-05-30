@@ -8,7 +8,7 @@ const Modal = ({
   children,
   showCloseButton = true,
 }) => {
-  // Effect to handle the Escape key for closing the modal
+  // Handle keyboard and body scroll effects
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) {
@@ -27,12 +27,14 @@ const Modal = ({
 
   if (!isOpen) return null;
 
+  // Close modal when clicking backdrop
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  // Render modal overlay and content
   return (
     <div className={styles.modalOverlay} onClick={handleBackdropClick}>
       <div className={styles.modalContent}>

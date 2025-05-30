@@ -1,3 +1,6 @@
+/* Modal Component Styles - Overlay and content styling */
+
+/* Modal overlay background */
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -12,6 +15,7 @@
     padding: var(--space-medium);
 }
 
+/* Modal content container */
 .modalContent {
     background: var(--card-color);
     border-radius: var(--border-radius-medium);
@@ -23,6 +27,7 @@
     animation: modalSlideIn 0.3s ease-out;
 }
 
+/* Modal entrance animation */
 @keyframes modalSlideIn {
     from {
         opacity: 0;
@@ -35,6 +40,7 @@
     }
 }
 
+/* Modal header styling */
 .modalHeader {
     display: flex;
     justify-content: space-between;
@@ -50,6 +56,7 @@
     font-weight: bold;
 }
 
+/* Close button styling */
 .closeButton {
     background: none;
     border: none;
@@ -72,10 +79,12 @@
     color: var(--text-error);
 }
 
+/* Modal body content */
 .modalBody {
     padding: var(--space-large);
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .modalOverlay {
         padding: var(--space-small);

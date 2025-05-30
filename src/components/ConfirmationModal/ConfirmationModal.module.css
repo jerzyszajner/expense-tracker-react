@@ -1,7 +1,11 @@
+/* ConfirmationModal Component Styles - Confirmation dialog styling */
+
+/* Main content container */
 .confirmationContent {
     text-align: center;
 }
 
+/* Icon container */
 .iconContainer {
     margin-bottom: var(--space-medium);
 }
@@ -10,6 +14,7 @@
     font-size: var(--x-large-font-size);
 }
 
+/* Message text */
 .message {
     font-size: var(--base-font-size);
     color: var(--primary-color);
@@ -17,12 +22,14 @@
     line-height: 1.5;
 }
 
+/* Button group layout */
 .buttonGroup {
     display: flex;
     gap: var(--space-medium);
     justify-content: center;
 }
 
+/* Button base styling */
 .cancelButton,
 .confirmButton {
     padding: var(--space-small) var(--space-large);
@@ -35,6 +42,7 @@
     cursor: pointer;
 }
 
+/* Cancel button styling */
 .cancelButton {
     background: var(--secondary-color-light);
     color: var(--secondary-color);
@@ -45,10 +53,12 @@
     background: #e2e8f0;
 }
 
+/* Confirm button base */
 .confirmButton {
     color: var(--text-light);
 }
 
+/* Confirm button variants */
 .confirmButton.danger {
     background: var(--text-error);
 }
@@ -73,6 +83,7 @@
     background: var(--secondary-color);
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .buttonGroup {
         flex-direction: column;

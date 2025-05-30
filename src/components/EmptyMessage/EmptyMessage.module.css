@@ -1,3 +1,6 @@
+/* EmptyMessage Component Styles - Empty state display */
+
+/* Main container */
 .emptyMessage {
     text-align: center;
     padding: var(--space-x-large);
@@ -6,12 +9,14 @@
     box-shadow: var(--box-shadow-base);
 }
 
+/* Icon styling */
 .icon {
     font-size: 3rem;
     display: block;
     margin-bottom: var(--space-medium);
 }
 
+/* Message text styling */
 .text {
     font-size: var(--base-font-size);
     color: var(--secondary-color);

@@ -1,6 +1,7 @@
+/* Global reset and design system */
 @font-face {
   font-family: Lato-Regular;
-  src: url("/public/assets/fonts/Lato-Regular.ttf");
+  src: url("/assets/fonts/Lato-Regular.ttf");
 }
 
 * {
@@ -17,6 +18,11 @@ input {
   font-size: var(--base-font-size);
 }
 
+body {
+  font-family: var(--font-family);
+}
+
+/* Design system variables */
 :root {
   /* Colors */
   --primary-color: #191e29;
@@ -29,7 +35,8 @@ input {
   --text-success: #38a169;
   --box-shadow-base: 0 5px 15px rgba(0, 0, 0, 0.5);
 
-  /* Fonts */
+  /* Typography */
+  --font-family: 'Lato-Regular', sans-serif;
   --base-font-size: 1rem;
   --small-font-size: 0.875rem;
   --medium-font-size: 1.5rem;
@@ -44,7 +51,7 @@ input {
   --space-large: 1.5rem;
   --space-x-large: 2rem;
 
-  /* Border Radius */
+  /* Border radius */
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 12px;

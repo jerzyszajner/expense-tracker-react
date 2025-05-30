@@ -3,7 +3,7 @@ import EmptyMessage from "../EmptyMessage/EmptyMessage";
 import TransactionItem from "../TransactionItem/TransactionItem";
 
 const TransactionList = ({ transactions, type, onDelete, onEdit }) => {
-  // Show empty state if no transactions
+  // Handle empty state display
   if (transactions.length === 0) {
     const message =
       type === "expense"
@@ -14,11 +14,12 @@ const TransactionList = ({ transactions, type, onDelete, onEdit }) => {
     return <EmptyMessage message={message} icon={icon} />;
   }
 
+  // Render transaction table with data
   return (
     <table className={styles.table}>
       <thead className={styles.header}>
         <tr className={styles.headerRow}>
-          <th className={styles.headerCell}>ID</th>
+          {/* <th className={styles.headerCell}>ID</th> */}
           <th className={styles.headerCell}>Title</th>
           <th className={styles.headerCell}>Amount</th>
           <th className={styles.headerCell}>Date</th>

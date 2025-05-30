@@ -1,7 +1,11 @@
+/* FormInput Component Styles - Input field styling and validation */
+
+/* Form group container */
 .formGroup {
-  margin-bottom: var(--space-medium);
+  margin-bottom: var(--space-small);
 }
 
+/* Label styling */
 .label {
   display: block;
   font-size: var(--base-font-size);
@@ -10,6 +14,7 @@
   margin-bottom: var(--space-small);
 }
 
+/* Input field styling */
 .input {
   width: 100%;
   padding: var(--space-small);
@@ -25,6 +30,7 @@
   border-color: var(--secondary-color);
 }
 
+/* Error state styling */
 .input.error {
   border-color: var(--text-error);
   background-color: #fdf2f2;
@@ -34,6 +40,7 @@
   border-color: #c0392b;
 }
 
+/* Error message styling */
 .errorText {
   display: block;
   color: var(--text-error);

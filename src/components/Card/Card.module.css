@@ -1,3 +1,6 @@
+/* Card Component Styles - Container component styling */
+
+/* Main card container */
 .card {
   background: var(--card-color);
   padding: var(--space-medium);
@@ -6,6 +9,7 @@
   margin-bottom: var(--space-medium);
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .card {
     padding: var(--space-medium);

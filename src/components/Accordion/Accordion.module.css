@@ -1,3 +1,6 @@
+/* Accordion Component Styles - Collapsible content container */
+
+/* Main accordion container */
 .accordion {
     margin-bottom: var(--space-medium);
     border-radius: var(--border-radius-medium);
@@ -6,6 +9,7 @@
     background: var(--card-color);
 }
 
+/* Accordion header button */
 .accordionHeader {
     width: 100%;
     padding: var(--space-medium) var(--space-large);
@@ -18,20 +22,21 @@
     align-items: center;
     font-size: var(--base-font-size);
     font-weight: bold;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .accordionHeader:hover {
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-    transform: translateY(-1px);
+    transform: translateY(-5px);
 }
 
+/* Header content layout */
 .headerContent {
     display: flex;
     align-items: center;
     gap: var(--space-small);
 }
 
+/* Header elements */
 .icon {
     font-size: var(--medium-font-size);
 }
@@ -41,6 +46,7 @@
     font-weight: bold;
 }
 
+/* Chevron indicator */
 .chevron {
     transition: transform 0.3s ease;
     font-size: var(--small-font-size);
@@ -51,6 +57,7 @@
     transform: rotate(180deg);
 }
 
+/* Accordion content area */
 .accordionContent {
     max-height: 0;
     overflow: hidden;
@@ -63,22 +70,13 @@
     transition: max-height 0.3s ease-in, padding 0.3s ease-in;
 }
 
+/* Content body */
 .accordionBody {
     padding: 0;
     transition: padding 0.3s ease;
 }
 
-.accordionContent.open .accordionBody {
-    padding: var(--space-medium);
-}
-
-/* Hover effects */
-.accordion:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Mobile responsiveness */
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .accordionHeader {
         padding: var(--space-medium);
@@ -90,9 +88,5 @@
 
     .icon {
         font-size: var(--base-font-size);
-    }
-
-    .accordionContent.open .accordionBody {
-        padding: var(--space-medium);
     }
 }

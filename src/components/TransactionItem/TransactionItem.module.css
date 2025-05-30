@@ -1,9 +1,13 @@
+/* TransactionItem Component Styles - Individual transaction row styling */
+
+/* Row styling based on transaction type */
 .expenseRow,
 .incomeRow {
     border-bottom: 1px solid #e2e8f0;
     transition: background-color 0.3s ease;
 }
 
+/* Hover effects */
 .expenseRow:hover {
     background-color: #fef2f2;
 }
@@ -12,6 +16,7 @@
     background-color: #f0f9ff;
 }
 
+/* Cell base styling */
 .cell {
     padding: var(--space-xs);
     color: var(--primary-color);
@@ -20,16 +25,7 @@
     font-size: var(--small-font-size);
 }
 
-.idCell {
-    font-family: monospace;
-    font-size: var(--small-font-size);
-    color: var(--secondary-color);
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: clip;
-    white-space: wrap;
-}
-
+/* Amount styling based on type */
 .expenseAmount {
     font-weight: bold;
     color: var(--text-error);
@@ -44,48 +40,50 @@
     white-space: wrap;
 }
 
+/* Date cell styling */
 .dateCell {
     font-family: monospace;
     color: var(--secondary-color);
     white-space: wrap;
 }
 
+/* Category cell styling */
 .categoryCell {
     text-transform: capitalize;
     color: var(--secondary-color);
 }
 
+/* Action button styling */
 .editButton {
-    background: var(--primary-color) !important;
-    margin: 0 var(--space-small);
-    min-width: 60px;
+    background: var(--primary-color);
+    margin-right: var(--space-small);
+    min-width: 65px;
     padding: var(--space-small);
     font-size: var(--small-font-size);
-    width: 90%;
+    width: auto;
+    display: inline-block;
 }
 
 .editButton:hover {
-    background: var(--secondary-color) !important;
+    background: var(--secondary-color);
 }
 
 .deleteButton {
-    background: var(--text-error) !important;
-    margin: 0 var(--space-small);
-    min-width: 60px;
+    background: var(--text-error);
+    margin-left: var(--space-small);
+    min-width: 65px;
     padding: var(--space-small);
     font-size: var(--small-font-size);
-    width: 90%;
-    margin-top: 3px;
+    width: auto;
+    display: inline-block;
 }
 
 .deleteButton:hover {
-    background: #c53030 !important;
+    background: #c53030;
 }
 
 /* Mobile responsive */
 @media (max-width: 768px) {
-
-    .idCell,
     .dateCell {
         display: none;
     }
@@ -100,12 +98,14 @@
         min-width: 50px;
         font-size: 0.75rem;
         padding: 0.25rem 0.5rem;
+        width: auto;
+        display: inline-block;
+        /* Ensure buttons are inline */
     }
 }
 
 @media (max-width: 480px) {
 
-    .idCell,
     .dateCell,
     .categoryCell {
         display: none;
@@ -113,9 +113,12 @@
 
     .editButton,
     .deleteButton {
-        min-width: 40px;
+        min-width: 45px;
         font-size: 0.7rem;
         padding: 0.25rem;
         margin: 0 0.1rem;
+        width: auto;
+        display: inline-block;
+        /* Ensure buttons are inline */
     }
 }

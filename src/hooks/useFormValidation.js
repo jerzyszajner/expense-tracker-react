@@ -1,9 +1,10 @@
 import { useState } from "react";
 
 const useFormValidation = () => {
+  // Form validation errors state
   const [formErrors, setFormErrors] = useState({});
 
-  // Validate all form fields and return true if valid
+  // Validate all form fields and return validation status
   const validateForm = (values) => {
     let newErrors = {};
 
@@ -32,6 +33,7 @@ const useFormValidation = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Reset all validation errors
   const clearErrors = () => {
     setFormErrors({});
   };

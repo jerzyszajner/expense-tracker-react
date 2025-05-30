@@ -8,18 +8,22 @@ const Accordion = ({
   icon,
   forceOpen = false,
 }) => {
+  // Accordion collapse/expand state
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
+  // Force open accordion when needed (e.g., editing)
   useEffect(() => {
     if (forceOpen) {
       setIsOpen(true);
     }
   }, [forceOpen]);
 
+  // Toggle accordion visibility
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
 
+  // Render collapsible accordion component
   return (
     <div className={styles.accordion}>
       <button

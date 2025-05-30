@@ -1,3 +1,4 @@
+/* TransactionList Component Styles - Table layout for transaction display */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -8,6 +9,7 @@
     margin-bottom: var(--space-large);
 }
 
+/* Table header styling */
 .header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--text-light);
@@ -17,6 +19,7 @@
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Header cell styling */
 .headerCell {
     padding: var(--space-small) var(--space-medium);
     text-align: left;
@@ -30,110 +33,94 @@
     border-right: none;
 }
 
+/* Table body styling */
 .tableBody {
     background: var(--card-color);
 }
 
 /* Desktop widths - only when all columns are visible */
+/* Title */
 .headerCell:nth-child(1) {
-    width: 80px;
-}
-
-/* ID */
-.headerCell:nth-child(2) {
-    width: auto;
-}
-
-/* Title - Remaining space */
-.headerCell:nth-child(3) {
-    width: 100px;
+    width: 25%;
 }
 
 /* Amount */
-.headerCell:nth-child(4) {
-    width: 100px;
+.headerCell:nth-child(2) {
+    width: 15%;
 }
 
 /* Date */
-.headerCell:nth-child(5) {
-    width: 120px;
+.headerCell:nth-child(3) {
+    width: 15%;
 }
 
 /* Category */
-.headerCell:nth-child(6) {
-    width: 140px;
+.headerCell:nth-child(4) {
+    width: 15%;
 }
 
 /* Actions */
+.headerCell:nth-child(5) {
+    width: 30%;
+}
 
-/* Tablet - Hide ID and Date */
+/* Tablet - Hide Date */
 @media (max-width: 768px) {
-    .headerCell:nth-child(1) {
-        display: none;
-    }
-
-    /* ID */
-    .headerCell:nth-child(4) {
-        display: none;
-    }
 
     /* Date */
+    .headerCell:nth-child(3) {
+        display: none;
+    }
 
-    .headerCell:nth-child(2) {
+    /* Title */
+    .headerCell:nth-child(1) {
         width: 40%;
     }
 
-    /* Title */
-    .headerCell:nth-child(3) {
-        width: 20%;
-    }
-
     /* Amount */
-    .headerCell:nth-child(5) {
+    .headerCell:nth-child(2) {
         width: 20%;
     }
 
     /* Category */
-    .headerCell:nth-child(6) {
+    .headerCell:nth-child(4) {
         width: 20%;
     }
 
     /* Actions */
+    .headerCell:nth-child(5) {
+        width: 20%;
+    }
 }
 
-/* Mobile - Hide ID, Date and Category */
+/* Mobile - Hide Date and Category */
 @media (max-width: 480px) {
-    .headerCell:nth-child(1) {
+
+    /* Date */
+    .headerCell:nth-child(3) {
         display: none;
     }
 
-    /* ID */
+    /* Category */
     .headerCell:nth-child(4) {
         display: none;
     }
 
-    /* Date */
-    .headerCell:nth-child(5) {
-        display: none;
-    }
-
-    /* Category */
-
-    .headerCell:nth-child(2) {
+    /* Title */
+    .headerCell:nth-child(1) {
         width: 50%;
     }
 
-    /* Title */
-    .headerCell:nth-child(3) {
-        width: 25%;
+    /* Amount */
+    .headerCell:nth-child(2) {
+        width: 20%;
     }
 
-    /* Amount */
-    .headerCell:nth-child(6) {
-        width: 25%;
-    }
 
     /* Actions */
+    .headerCell:nth-child(5) {
+        width: 30%;
+    }
 
     .headerCell {
         font-size: var(--small-font-size);

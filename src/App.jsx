@@ -1,8 +1,10 @@
 import styles from "./App.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import useModal from "./hooks/useModal";
+import { useFilteredData } from "./hooks/useFilteredData";
 import TransactionForm from "./components/TransactionForm/TransactionForm";
+import ExpenseFilter from "./components/ExpenseFilter/ExpenseFilter";
 import TransactionList from "./components/TransactionList/TransactionList";
 import BalanceSummary from "./components/BalanceSummary/BalanceSummary";
 import ConfirmationModal from "./components/ConfirmationModal/ConfirmationModal";
@@ -14,6 +16,7 @@ function App() {
   // Core state management
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
   const [incomes, setIncomes] = useLocalStorage("incomes", []);
+  const [filter, setFilter] = useState("");
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [activeTab, setActiveTab] = useState("expenses");
 
@@ -21,9 +24,21 @@ function App() {
   const deleteModal = useModal();
   const [itemToDelete, setItemToDelete] = useState(null);
 
+  // Filter data based on active tab and filter criteria
+  const filteredExpenses = useFilteredData(expenses, filter, "expenses");
+  const filteredIncomes = useFilteredData(incomes, filter, "incomes");
+
   // Helper functions to avoid repetition
   const getCurrentType = () =>
     activeTab === "expenses" ? "expense" : "income";
+
+  const getCurrentTransactions = () =>
+    activeTab === "expenses" ? filteredExpenses : filteredIncomes;
+
+  // Reset filter when switching tabs
+  useEffect(() => {
+    setFilter("");
+  }, [activeTab]);
 
   // Add new transaction to appropriate list
   const addTransaction = (transaction, type) => {
@@ -98,66 +113,90 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <h1 className={styles.appTitle}>Personal Finance Tracker</h1>
+      <header>
+        {<h1 className={styles.appTitle}>Personal Finance Tracker</h1>}
+        {/* Balance overview */}
+        <Card>
+          <BalanceSummary expenses={expenses} incomes={incomes} />
+        </Card>
 
-      {/* Balance overview */}
-      <Card>
-        <BalanceSummary expenses={expenses} incomes={incomes} />
-      </Card>
+        {/* Tab switcher */}
+        <nav>
+          <Card className={styles.tabContainer}>
+            <div className={styles.tabSection}>
+              <Button
+                onClick={() => handleTabChange("expenses")}
+                className={`${styles.tabButton} ${
+                  activeTab === "expenses" ? styles.activeTab : ""
+                }`}
+                ariaLabel={"Switch to Expenses Tab"}
+              >
+                Expenses
+              </Button>
+              <Button
+                onClick={() => handleTabChange("incomes")}
+                className={`${styles.tabButton} ${
+                  activeTab === "incomes" ? styles.activeTab : ""
+                }`}
+                ariaLabel={"Switch to Incomes Tab"}
+              >
+                Incomes
+              </Button>
+            </div>
 
-      {/* Tab switcher */}
-      <Card className={styles.tabContainer}>
-        <div className={styles.tabSection}>
-          <Button
-            onClick={() => handleTabChange("expenses")}
-            className={`${styles.tabButton} ${
-              activeTab === "expenses" ? styles.activeTab : ""
-            }`}
+            <div className={styles.filterSection}>
+              <ExpenseFilter
+                selectedFilter={filter}
+                onFilterChange={setFilter}
+                activeTab={activeTab}
+              />
+            </div>
+          </Card>
+        </nav>
+      </header>
+
+      <main>
+        {/* Add/Edit form */}
+        <section>
+          <Accordion
+            title={
+              isEditing
+                ? `Edit ${activeTab.slice(0, -1)}`
+                : `Add New ${activeTab.slice(0, -1)}`
+            }
+            icon={activeTab === "expenses" ? "💰" : "💵"}
+            defaultOpen={false}
+            forceOpen={!!isEditing}
           >
-            Expenses
-          </Button>
-          <Button
-            onClick={() => handleTabChange("incomes")}
-            className={`${styles.tabButton} ${
-              activeTab === "incomes" ? styles.activeTab : ""
-            }`}
-          >
-            Incomes
-          </Button>
-        </div>
-      </Card>
+            <TransactionForm
+              type={getCurrentType()}
+              onAdd={(transaction) =>
+                addTransaction(transaction, getCurrentType())
+              }
+              editing={isEditing ? editingTransaction : null}
+              onEdit={(transaction) =>
+                editTransaction(transaction, getCurrentType())
+              }
+              onCancelEdit={cancelEditing}
+            />
+          </Accordion>
+        </section>
 
-      {/* Add/Edit form */}
-      <Accordion
-        title={
-          isEditing
-            ? `Edit ${activeTab.slice(0, -1)}`
-            : `Add New ${activeTab.slice(0, -1)}`
-        }
-        icon={activeTab === "expenses" ? "💰" : "💵"}
-        defaultOpen={false}
-        forceOpen={!!isEditing}
-      >
-        <TransactionForm
-          type={getCurrentType()}
-          onAdd={(transaction) => addTransaction(transaction, getCurrentType())}
-          editing={isEditing ? editingTransaction : null}
-          onEdit={(transaction) =>
-            editTransaction(transaction, getCurrentType())
-          }
-          onCancelEdit={cancelEditing}
-        />
-      </Accordion>
-
-      <Card>
-        <h2>Your {activeTab === "expenses" ? "Expenses" : "Incomes"}</h2>
-        <TransactionList
-          transactions={activeTab === "expenses" ? expenses : incomes}
-          type={getCurrentType()}
-          onDelete={(item) => handleDeleteRequest(item, getCurrentType())}
-          onEdit={(item) => startEditing(item, getCurrentType())}
-        />
-      </Card>
+        <section>
+          <Card>
+            <h2 className={styles.sectionTitle}>
+              Your {activeTab === "expenses" ? "Expenses" : "Incomes"}
+            </h2>
+            {/* Transaction list */}
+            <TransactionList
+              transactions={getCurrentTransactions()}
+              type={getCurrentType()}
+              onDelete={(item) => handleDeleteRequest(item, getCurrentType())}
+              onEdit={(item) => startEditing(item, getCurrentType())}
+            />
+          </Card>
+        </section>
+      </main>
 
       {/* Delete confirmation modal */}
       <ConfirmationModal

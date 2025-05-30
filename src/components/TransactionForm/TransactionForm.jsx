@@ -10,22 +10,23 @@ import {
 } from "../../constants/categories";
 
 const TransactionForm = ({ type, onAdd, editing, onEdit, onCancelEdit }) => {
-  // Form state
+  // Form field state
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
   const [success, setSuccess] = useState("");
 
+  // Form validation hook
   const { formErrors, validateForm, clearErrors } = useFormValidation();
 
-  // Get appropriate categories and labels based on transaction type
+  // Dynamic content based on transaction type
   const categories =
     type === "expense" ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
   const defaultCategory = categories[0];
   const transactionName = type === "expense" ? "Expense" : "Income";
 
-  // Populate form when editing
+  // Populate form fields when editing existing transaction
   useEffect(() => {
     if (editing) {
       setTitle(editing.title);
@@ -37,6 +38,7 @@ const TransactionForm = ({ type, onAdd, editing, onEdit, onCancelEdit }) => {
     }
   }, [editing, defaultCategory]);
 
+  // Process form submission with validation
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -67,6 +69,7 @@ const TransactionForm = ({ type, onAdd, editing, onEdit, onCancelEdit }) => {
     setTimeout(() => setSuccess(""), 3000);
   };
 
+  // Clear all form fields
   const resetForm = () => {
     setTitle("");
     setAmount("");
@@ -75,6 +78,7 @@ const TransactionForm = ({ type, onAdd, editing, onEdit, onCancelEdit }) => {
     clearErrors();
   };
 
+  // Handle cancel action during editing
   const handleCancel = () => {
     if (editing) {
       onCancelEdit();

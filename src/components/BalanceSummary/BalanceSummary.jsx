@@ -1,6 +1,7 @@
 import styles from "./BalanceSummary.module.css";
 
 const BalanceSummary = ({ expenses, incomes }) => {
+  // Calculate financial totals
   const totalIncome = incomes.reduce(
     (total, income) => total + income.amount,
     0
@@ -11,6 +12,7 @@ const BalanceSummary = ({ expenses, incomes }) => {
   );
   const balance = totalIncome - totalExpenses;
 
+  // Display financial overview cards
   return (
     <div className={styles.balanceSummary}>
       <div className={styles.summaryGrid}>
