@@ -35,6 +35,11 @@
     min-width: 200px;
     transition: border-color 0.3s ease;
     cursor: pointer;
+    /* Fix for Safari/iOS */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    min-height: 40px;
 }
 
 .filterSelect:focus {

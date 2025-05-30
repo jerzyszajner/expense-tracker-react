@@ -23,6 +23,48 @@
   font-size: var(--base-font-size);
   transition: border-color 0.3s ease;
   background-color: var(--card-color);
+  /* Fix for Safari/iOS date input */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+/* Specific styling for date inputs on Safari/iOS */
+.input[type="date"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: var(--space-small);
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  color: var(--primary-color);
+  background-color: var(--card-color);
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius-small);
+  min-height: 40px;
+  line-height: 1.4;
+}
+
+/* Date input focus state */
+.input[type="date"]:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+/* Select styling fix for Safari/iOS */
+.input[type="select"],
+select.input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--space-small) center;
+  background-size: 1em;
+  padding-right: calc(var(--space-large) + 1em);
+  cursor: pointer;
 }
 
 .input:focus {
@@ -47,4 +89,31 @@
   font-size: var(--small-font-size);
   margin-top: var(--space-small);
   font-weight: 500;
+}
+
+/* Safari/iOS specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .input[type="date"] {
+    padding: var(--space-small);
+    line-height: normal;
+  }
+  
+  select.input {
+    padding: var(--space-small);
+    padding-right: calc(var(--space-large) + 1em);
+  }
+}
+
+/* Mobile Safari specific adjustments */
+@supports (-webkit-touch-callout: none) {
+  .input[type="date"] {
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  select.input {
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: var(--space-small);
+  }
 }
