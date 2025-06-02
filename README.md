@@ -92,7 +92,7 @@ The application emphasizes simplicity and usability, making personal finance tra
 ## Credits
 
 - **Inspiration**: Modern personal finance apps and minimalist design principles
-- **GPT/AI**: Generate and som text.
+- **GPT/AI**: Assisted with Accordion component implementation and debugging
 
 ## License
 
