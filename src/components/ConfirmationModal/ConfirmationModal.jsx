@@ -1,52 +1,57 @@
-import Modal from "../Modal/Modal";
 import styles from "./ConfirmationModal.module.css";
+import Button from "../Button/Button";
+import { RemoveScroll } from "react-remove-scroll";
+import { useModalKeyDown } from "../../hooks/useModalKeyDown";
 
 const ConfirmationModal = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  title = "Confirm Action",
+  title,
   message,
-  confirmText = "Confirm",
+  itemName,
+  onConfirm,
+  onCancel,
+  confirmText = "Delete",
   cancelText = "Cancel",
-  type = "danger", // danger, warning, info
+  icon = "⚠️",
+  isOpen,
 }) => {
-  // Handle confirmation and close modal
-  const handleConfirm = () => {
-    onConfirm();
-    onClose();
-  };
+  // Handle keyboard events
+  const handleKeyDown = useModalKeyDown(onConfirm, onCancel);
 
-  // Render confirmation dialog with action buttons
+  if (!isOpen) return null;
+
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={title}
-      showCloseButton={false}
-    >
-      <div className={styles.confirmationContent}>
-        <div className={`${styles.iconContainer} ${styles[type]}`}>
-          {type === "danger" && <span className={styles.icon}>⚠️</span>}
-          {type === "warning" && <span className={styles.icon}>⚠️</span>}
-          {type === "info" && <span className={styles.icon}>ℹ️</span>}
-        </div>
-
-        <p className={styles.message}>{message}</p>
-
-        <div className={styles.buttonGroup}>
-          <button className={styles.cancelButton} onClick={onClose}>
-            {cancelText}
-          </button>
-          <button
-            className={`${styles.confirmButton} ${styles[type]}`}
-            onClick={handleConfirm}
-          >
-            {confirmText}
-          </button>
+    // Prevent body scroll when modal is open
+    <RemoveScroll enabled={isOpen}>
+      <div
+        className={styles.modalOverlay}
+        onKeyDown={handleKeyDown}
+        tabIndex={-1}
+      >
+        <div className={styles.modalContent}>
+          <div className={styles.modalHeader}>
+            <h2 className={styles.modalTitle}>{title}</h2>
+          </div>
+          <div className={styles.modalBody}>
+            <div className={styles.modalBodyContent}>
+              <div className={styles.modalIcon}>{icon}</div>{" "}
+              <p className={styles.modalMessage}>
+                {message} "{itemName}"?
+                <br />
+                This action cannot be undone.
+              </p>
+              <div className={styles.buttonGroup}>
+                <Button onClick={onConfirm} variant="danger">
+                  {confirmText}
+                </Button>
+                <Button onClick={onCancel} variant="primary">
+                  {cancelText}
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </Modal>
+    </RemoveScroll>
   );
 };
 

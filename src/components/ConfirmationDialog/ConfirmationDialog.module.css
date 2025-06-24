@@ -1,0 +1,25 @@
+.bodyContent {
+    box-shadow: var(--box-shadow-base);
+    border-radius: var(--border-radius-medium);
+    text-align: center;
+    padding: var(--space-small);
+}
+
+.icon {
+    font-size: var(--large-font-size);
+    margin-bottom: var(--space-medium);
+}
+
+.message {
+    margin-bottom: var(--space-large);
+    color: var(--primary-color);
+    font-size: var(--base-font-size);
+    line-height: 1.75;
+    font-weight: bold;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+}

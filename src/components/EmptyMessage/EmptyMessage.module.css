@@ -11,7 +11,7 @@
 
 /* Icon styling */
 .icon {
-    font-size: 3rem;
+    font-size: var(--x-large-font-size);
     display: block;
     margin-bottom: var(--space-medium);
 }

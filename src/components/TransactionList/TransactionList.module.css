@@ -1,18 +1,30 @@
 /* TransactionList Component Styles - Table layout for transaction display */
+
+/* Container for scrollable table */
+.tableContainer {
+    width: 100%;
+    background: var(--card-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-base);
+    overflow: hidden;
+    height: 93vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;
     background: var(--card-color);
-    border-radius: var(--border-radius-medium);
-    overflow: hidden;
-    box-shadow: var(--box-shadow-base);
-    margin-bottom: var(--space-large);
 }
 
 /* Table header styling */
 .header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--text-light);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .headerRow {
@@ -21,12 +33,12 @@
 
 /* Header cell styling */
 .headerCell {
-    padding: var(--space-small) var(--space-medium);
-    text-align: left;
+    padding: var(--space-small);
     font-weight: bold;
     font-size: var(--base-font-size);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
+    flex: 1;
 }
 
 .headerCell:last-child {
@@ -38,63 +50,22 @@
     background: var(--card-color);
 }
 
-/* Desktop widths - only when all columns are visible */
-/* Title */
-.headerCell:nth-child(1) {
-    width: 25%;
+/* Row min-height */
+.tableBody tr {
+    min-height: 60px;
 }
 
-/* Amount */
-.headerCell:nth-child(2) {
-    width: 15%;
-}
-
-/* Date */
-.headerCell:nth-child(3) {
-    width: 15%;
-}
-
-/* Category */
-.headerCell:nth-child(4) {
-    width: 15%;
-}
-
-/* Actions */
-.headerCell:nth-child(5) {
-    width: 30%;
-}
-
-/* Tablet - Hide Date */
-@media (max-width: 768px) {
+/* Tablet - Hide Date + Add scrolling */
+@media screen and (max-width: 768px) {
 
     /* Date */
     .headerCell:nth-child(3) {
         display: none;
     }
-
-    /* Title */
-    .headerCell:nth-child(1) {
-        width: 40%;
-    }
-
-    /* Amount */
-    .headerCell:nth-child(2) {
-        width: 20%;
-    }
-
-    /* Category */
-    .headerCell:nth-child(4) {
-        width: 20%;
-    }
-
-    /* Actions */
-    .headerCell:nth-child(5) {
-        width: 20%;
-    }
 }
 
-/* Mobile - Hide Date and Category */
-@media (max-width: 480px) {
+/* Mobile - Hide Date and Category + Add scrolling */
+@media screen and (max-width: 600px) {
 
     /* Date */
     .headerCell:nth-child(3) {
@@ -104,26 +75,20 @@
     /* Category */
     .headerCell:nth-child(4) {
         display: none;
-    }
-
-    /* Title */
-    .headerCell:nth-child(1) {
-        width: 50%;
-    }
-
-    /* Amount */
-    .headerCell:nth-child(2) {
-        width: 20%;
-    }
-
-
-    /* Actions */
-    .headerCell:nth-child(5) {
-        width: 30%;
     }
 
     .headerCell {
         font-size: var(--small-font-size);
-        padding: 0.5rem 0.25rem;
+        padding: var(--space-small);
+    }
+
+    .tableContainer {
+        height: 43vh;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .tableContainer {
+        height: 37vh;
     }
 }

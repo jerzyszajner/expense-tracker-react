@@ -23,12 +23,13 @@ const ExpenseFilter = ({ selectedFilter, onFilterChange, activeTab }) => {
       </label>
       <select
         id="filter"
+        name="filter"
         className={styles.filterSelect}
         value={selectedFilter}
         onChange={handleFilterChange}
       >
         <option value="">
-          All {activeTab === "expenses" ? "Expenses" : "Incomes"}
+          Filter {activeTab === "expenses" ? "Expenses" : "Incomes"}
         </option>
 
         <optgroup label="Categories">

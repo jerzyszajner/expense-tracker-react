@@ -1,18 +1,19 @@
 import { useState } from "react";
+import { DEFAULT_CATEGORY_OPTION } from "../constants/categories";
 
-const useFormValidation = () => {
-  // Form validation errors state
-  const [formErrors, setFormErrors] = useState({});
+export const useFormValidation = () => {
+  const [errors, setErrors] = useState({});
 
-  // Validate all form fields and return validation status
-  const validateForm = (values) => {
+  // Validate form data
+  const validate = (values) => {
     let newErrors = {};
-
-    if (!values.title?.trim()) {
+    // Title validation
+    if (!values.title.trim()) {
       newErrors.title = "Title is required";
     }
 
-    if (!values.amount?.trim()) {
+    // Amount validation
+    if (!values.amount) {
       newErrors.amount = "Amount is required";
     } else if (
       isNaN(parseFloat(values.amount)) ||
@@ -21,28 +22,22 @@ const useFormValidation = () => {
       newErrors.amount = "Amount must be greater than 0";
     }
 
-    if (!values.date?.trim()) {
+    // Date validation
+    if (!values.date.trim()) {
       newErrors.date = "Date is required";
     }
 
-    if (!values.category?.trim()) {
+    // Category validation
+    if (
+      !values.category.trim() ||
+      values.category === DEFAULT_CATEGORY_OPTION
+    ) {
       newErrors.category = "Category is required";
     }
 
-    setFormErrors(newErrors);
+    setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // Reset all validation errors
-  const clearErrors = () => {
-    setFormErrors({});
-  };
-
-  return {
-    formErrors,
-    validateForm,
-    clearErrors,
-  };
+  return { errors, validate };
 };
-
-export default useFormValidation;

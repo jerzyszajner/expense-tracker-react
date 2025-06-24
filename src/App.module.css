@@ -2,14 +2,21 @@
 
 /* Main app container */
 .app {
-    max-width: 700px;
-    margin: 0 auto;
+    max-width: 1500px;
     padding: var(--space-medium);
     background-color: var(--secondary-color-light);
     min-height: 100vh;
     display: flex;
+    gap: var(--space-medium);
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: var(--space-medium);
+    max-width: 30%;
+    width: 100%;
 }
 
 /* Main title styling */
@@ -17,8 +24,14 @@
     font-size: var(--medium-font-size);
     color: var(--primary-color);
     text-align: center;
-    margin-bottom: var(--space-large);
-    font-weight: bold;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-medium);
+    max-width: 70%;
+    width: 100%;
 }
 
 /* Section title styling */
@@ -35,78 +48,70 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--space-medium);
+    gap: var(--space-small);
 }
 
 /* Tab section layout */
 .tabContainer .tabSection {
     display: flex;
     gap: var(--space-small);
+    width: 100%;
 }
 
-/* Tab button styling */
-.tabContainer .tabSection .tabButton {
-    padding: var(--space-small) var(--space-large);
-    background: var(--secondary-color-light);
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
-}
-
-.tabContainer .tabSection .tabButton:hover {
-    background: #e2e8f0;
-    transform: translateY(-1px);
-}
-
-/* Active tab styling */
-.tabContainer .tabSection .tabButton.activeTab {
-    background: var(--primary-color);
-    color: var(--text-light);
-    border: 1px solid var(--primary-color);
-}
-
-.tabContainer .tabSection .tabButton.activeTab:hover {
-    background: var(--secondary-color);
+.filterSection {
+    width: 100%;
 }
 
 /* Tablet responsive adjustments */
 @media (max-width: 768px) {
     .app {
-        padding: var(--space-medium);
+        padding: var(--space-small);
+        gap: var(--space-small);
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-small);
+        max-width: 30%;
+        width: 100%;
     }
 
     .tabContainer {
         flex-direction: column;
-        gap: var(--space-medium);
     }
 
     .tabSection {
         width: 100%;
         justify-content: center;
     }
-
-    .tabButton {
-        font-size: var(--small-font-size);
-        padding: var(--space-small);
-        flex: 1;
-    }
 }
 
+
+
 /* Mobile responsive adjustments */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .app {
         padding: var(--space-small);
+        flex-direction: column;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-small);
+        max-width: 100%;
     }
 
     .sectionTitle {
         text-align: center;
     }
 
-    .tabButton {
-        padding: var(--space-xsmall) var(--space-medium);
-        font-size: var(--xsmall-font-size);
-    }
-
-    .filterSection {
+    main {
+        gap: var(--space-medium);
+        max-width: 100%;
         width: 100%;
     }
+
+
 }

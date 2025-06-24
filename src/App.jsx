@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import useModal from "./hooks/useModal";
 import { useFilteredData } from "./hooks/useFilteredData";
-import TransactionForm from "./components/TransactionForm/TransactionForm";
+import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
+import IncomeForm from "./components/IncomeForm/IncomeForm";
 import ExpenseFilter from "./components/ExpenseFilter/ExpenseFilter";
 import TransactionList from "./components/TransactionList/TransactionList";
 import BalanceSummary from "./components/BalanceSummary/BalanceSummary";
-import ConfirmationModal from "./components/ConfirmationModal/ConfirmationModal";
-import Accordion from "./components/Accordion/Accordion";
+import Modal from "./components/Modal/Modal";
+import ConfirmationDialog from "./components/ConfirmationDialog/ConfirmationDialog";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 
@@ -21,6 +22,8 @@ function App() {
   const [activeTab, setActiveTab] = useState("expenses");
 
   // Modal state
+  const addModal = useModal();
+  const editModal = useModal();
   const deleteModal = useModal();
   const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -73,17 +76,21 @@ function App() {
         )
       );
     }
-    setEditingTransaction(null);
   };
 
-  // Enter edit mode and switch to correct tab
+  // Enter edit mode
   const startEditing = (transaction, type) => {
     setEditingTransaction({ ...transaction, type });
-    setActiveTab(type === "expense" ? "expenses" : "incomes");
+    editModal.openModal();
   };
 
   const cancelEditing = () => {
     setEditingTransaction(null);
+    editModal.closeModal();
+  };
+
+  const cancelAdding = () => {
+    addModal.closeModal();
   };
 
   // Show delete confirmation modal
@@ -95,6 +102,7 @@ function App() {
   const handleConfirmDelete = () => {
     deleteTransaction(itemToDelete.id, itemToDelete.type);
     setItemToDelete(null);
+    deleteModal.closeModal();
   };
 
   const handleCancelDelete = () => {
@@ -108,13 +116,14 @@ function App() {
     setEditingTransaction(null);
   };
 
-  const isEditing =
-    editingTransaction && editingTransaction.type === getCurrentType();
-
   return (
     <div className={styles.app}>
+      {/* Header */}
       <header>
-        {<h1 className={styles.appTitle}>Personal Finance Tracker</h1>}
+        <Card>
+          <h1 className={styles.appTitle}>Expense Tracker</h1>
+        </Card>
+
         {/* Balance overview */}
         <Card>
           <BalanceSummary expenses={expenses} incomes={incomes} />
@@ -126,18 +135,14 @@ function App() {
             <div className={styles.tabSection}>
               <Button
                 onClick={() => handleTabChange("expenses")}
-                className={`${styles.tabButton} ${
-                  activeTab === "expenses" ? styles.activeTab : ""
-                }`}
+                variant={activeTab === "expenses" ? "primary" : "secondary"}
                 ariaLabel={"Switch to Expenses Tab"}
               >
                 Expenses
               </Button>
               <Button
                 onClick={() => handleTabChange("incomes")}
-                className={`${styles.tabButton} ${
-                  activeTab === "incomes" ? styles.activeTab : ""
-                }`}
+                variant={activeTab === "incomes" ? "primary" : "secondary"}
                 ariaLabel={"Switch to Incomes Tab"}
               >
                 Incomes
@@ -153,35 +158,17 @@ function App() {
             </div>
           </Card>
         </nav>
+        {/* Add button */}
+        <section>
+          <Card>
+            <Button onClick={addModal.openModal}>
+              Add New {activeTab === "expenses" ? "Expense" : "Income"}
+            </Button>
+          </Card>
+        </section>
       </header>
 
       <main>
-        {/* Add/Edit form */}
-        <section>
-          <Accordion
-            title={
-              isEditing
-                ? `Edit ${activeTab.slice(0, -1)}`
-                : `Add New ${activeTab.slice(0, -1)}`
-            }
-            icon={activeTab === "expenses" ? "💰" : "💵"}
-            defaultOpen={false}
-            forceOpen={!!isEditing}
-          >
-            <TransactionForm
-              type={getCurrentType()}
-              onAdd={(transaction) =>
-                addTransaction(transaction, getCurrentType())
-              }
-              editing={isEditing ? editingTransaction : null}
-              onEdit={(transaction) =>
-                editTransaction(transaction, getCurrentType())
-              }
-              onCancelEdit={cancelEditing}
-            />
-          </Accordion>
-        </section>
-
         <section>
           <Card>
             <h2 className={styles.sectionTitle}>
@@ -198,17 +185,73 @@ function App() {
         </section>
       </main>
 
+      {/* Add transaction modal */}
+      <Modal
+        isOpen={addModal.isOpen}
+        onClose={addModal.closeModal}
+        title={`Add New ${activeTab === "expenses" ? "Expense" : "Income"}`}
+      >
+        {activeTab === "expenses" ? (
+          <ExpenseForm
+            onAdd={(expense) => {
+              addTransaction(expense, "expense");
+              setTimeout(() => addModal.closeModal(), 1000);
+            }}
+            onCancelEdit={cancelAdding}
+          />
+        ) : (
+          <IncomeForm
+            onAdd={(income) => {
+              addTransaction(income, "income");
+              setTimeout(() => addModal.closeModal(), 1000);
+            }}
+            onCancelEdit={cancelAdding}
+          />
+        )}
+      </Modal>
+
+      {/* Edit transaction modal */}
+      <Modal
+        isOpen={editModal.isOpen}
+        onClose={cancelEditing}
+        title={`Edit ${editingTransaction?.type || "Transaction"}`}
+      >
+        {editingTransaction?.type === "expense" ? (
+          <ExpenseForm
+            editing={editingTransaction}
+            onEdit={(expense) => {
+              editTransaction(expense, "expense");
+              setTimeout(() => cancelEditing(), 1000);
+            }}
+            onCancelEdit={cancelEditing}
+          />
+        ) : (
+          <IncomeForm
+            editing={editingTransaction}
+            onEdit={(income) => {
+              editTransaction(income, "income");
+              setTimeout(() => cancelEditing(), 1000);
+            }}
+            onCancelEdit={cancelEditing}
+          />
+        )}
+      </Modal>
+
       {/* Delete confirmation modal */}
-      <ConfirmationModal
+      <Modal
         isOpen={deleteModal.isOpen}
-        onClose={handleCancelDelete}
-        onConfirm={handleConfirmDelete}
-        title="Delete Item"
-        message={`Are you sure you want to delete "${itemToDelete?.title}"? This action cannot be undone.`}
-        confirmText="Delete"
-        cancelText="Cancel"
-        type="danger"
-      />
+        onClose={deleteModal.closeModal}
+        title={`Delete ${itemToDelete?.type}`}
+        onEnter={handleConfirmDelete}
+        onEscape={handleCancelDelete}
+      >
+        <ConfirmationDialog
+          message="Are you sure you want to delete"
+          itemName={itemToDelete?.title}
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+        />
+      </Modal>
     </div>
   );
 }

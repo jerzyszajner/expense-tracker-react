@@ -53,8 +53,6 @@ npm run dev
 
 - **Modal Confirmations**: Safe deletion with confirmation dialogs to prevent accidental data loss.
 
-- **Accordion Interface**: Collapsible form sections for clean, organized user interface.
-
 ## Component Features
 
 ### Transaction Management
@@ -92,7 +90,7 @@ The application emphasizes simplicity and usability, making personal finance tra
 ## Credits
 
 - **Inspiration**: Modern personal finance apps and minimalist design principles
-- **GPT/AI**: Assisted with Accordion component implementation and debugging
+- **GPT/AI**: Assisted with debugging
 
 ## License
 

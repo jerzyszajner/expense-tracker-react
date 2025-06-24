@@ -9,7 +9,7 @@
 
 /* Hover effects */
 .expenseRow:hover {
-    background-color: #fef2f2;
+    background-color: var(--error-bg-hover);
 }
 
 .incomeRow:hover {
@@ -18,68 +18,53 @@
 
 /* Cell base styling */
 .cell {
-    padding: var(--space-xs);
+    padding: var(--space-small);
     color: var(--primary-color);
     border-bottom: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
     text-align: center;
-    font-size: var(--small-font-size);
+    font-size: var(--base-font-size);
+    flex: 1;
+    scroll-behavior: smooth;
 }
 
 /* Amount styling based on type */
 .expenseAmount {
     font-weight: bold;
-    color: var(--text-error);
+    color: var(--expense-color);
     text-align: center;
-    white-space: wrap;
+    flex: 1;
 }
 
 .incomeAmount {
     font-weight: bold;
     color: var(--text-success);
     text-align: center;
-    white-space: wrap;
+    flex: 1;
 }
 
 /* Date cell styling */
 .dateCell {
-    font-family: monospace;
     color: var(--secondary-color);
-    white-space: wrap;
+    flex: 1;
+    text-wrap-mode: nowrap;
 }
 
 /* Category cell styling */
 .categoryCell {
     text-transform: capitalize;
     color: var(--secondary-color);
+    flex: 1;
 }
 
-/* Action button styling */
-.editButton {
-    background: var(--primary-color);
-    margin-right: var(--space-small);
-    min-width: 65px;
-    padding: var(--space-small);
-    font-size: var(--small-font-size);
-    width: auto;
-    display: inline-block;
-}
-
-.editButton:hover {
-    background: var(--secondary-color);
-}
-
-.deleteButton {
-    background: var(--text-error);
-    margin-left: var(--space-small);
-    min-width: 65px;
-    padding: var(--space-small);
-    font-size: var(--small-font-size);
-    width: auto;
-    display: inline-block;
-}
-
-.deleteButton:hover {
-    background: #c53030;
+.actionsCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    flex: 1;
+    padding: var(--space-xs);
+    height: auto;
 }
 
 /* Mobile responsive */
@@ -89,36 +74,14 @@
     }
 
     .cell {
-        padding: 0;
-    }
-
-    .editButton,
-    .deleteButton {
-        margin: 0 0.25rem;
-        min-width: 50px;
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-        width: auto;
-        display: inline-block;
-        /* Ensure buttons are inline */
+        padding: var(--space-xs);
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
     .dateCell,
     .categoryCell {
         display: none;
-    }
-
-    .editButton,
-    .deleteButton {
-        min-width: 45px;
-        font-size: 0.7rem;
-        padding: 0.25rem;
-        margin: 0 0.1rem;
-        width: auto;
-        display: inline-block;
-        /* Ensure buttons are inline */
     }
 }

@@ -1,4 +1,6 @@
 // This file defines constants for different categories of expenses and income.
+export const DEFAULT_CATEGORY_OPTION = "choose category";
+
 export const EXPENSE_CATEGORIES = [
   "housing",
   "utilities",

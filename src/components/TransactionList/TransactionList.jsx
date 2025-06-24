@@ -16,29 +16,31 @@ const TransactionList = ({ transactions, type, onDelete, onEdit }) => {
 
   // Render transaction table with data
   return (
-    <table className={styles.table}>
-      <thead className={styles.header}>
-        <tr className={styles.headerRow}>
-          {/* <th className={styles.headerCell}>ID</th> */}
-          <th className={styles.headerCell}>Title</th>
-          <th className={styles.headerCell}>Amount</th>
-          <th className={styles.headerCell}>Date</th>
-          <th className={styles.headerCell}>Category</th>
-          <th className={styles.headerCell}>Actions</th>
-        </tr>
-      </thead>
-      <tbody className={styles.tableBody}>
-        {transactions.map((transaction) => (
-          <TransactionItem
-            key={transaction.id}
-            transaction={transaction}
-            type={type}
-            onDelete={onDelete}
-            onEdit={onEdit}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className={styles.tableContainer}>
+      <table className={styles.table}>
+        <thead className={styles.header}>
+          <tr className={styles.headerRow}>
+            {/* <th className={styles.headerCell}>ID</th> */}
+            <th className={styles.headerCell}>Title</th>
+            <th className={styles.headerCell}>Amount</th>
+            <th className={styles.headerCell}>Date</th>
+            <th className={styles.headerCell}>Category</th>
+            <th className={styles.headerCell}>Actions</th>
+          </tr>
+        </thead>
+        <tbody className={styles.tableBody}>
+          {transactions.map((transaction) => (
+            <TransactionItem
+              key={transaction.id}
+              transaction={transaction}
+              type={type}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

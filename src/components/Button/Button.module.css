@@ -6,6 +6,7 @@
     border: none;
     border-radius: var(--border-radius-small);
     font-size: var(--base-font-size);
+    font-family: var(--font-family);
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -13,19 +14,59 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+
+/* Primary variant (default) */
+.primary {
     background: var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: var(--text-light);
 }
 
-/* Hover effects */
-.button:hover {
+.primary:hover {
     background: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+/* Secondary variant */
+.secondary {
+    background: var(--card-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.secondary:hover {
+    background: var(--secondary-color-light);
+    border-color: var(--secondary-color);
+}
+
+/* Danger variant */
+.danger {
+    background: var(--danger-color);
+    border: 1px solid var(--danger-color);
+    color: var(--text-light);
+}
+
+.danger:hover {
+    background: var(--danger-hover);
+    border-color: var(--danger-hover);
+}
+
+/* General hover effects */
+.button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-base);
 }
 
 .button:active {
     transform: translateY(0);
+}
+
+.button:focus {
+    /* outline: none; */
+    font-weight: bold;
+    outline: 2px solid var(--tertiary-color);
 }
 
 /* Disabled state */
@@ -37,7 +78,6 @@
 }
 
 .button:disabled:hover {
-    background: var(--primary-color);
     transform: none;
     box-shadow: none;
 }

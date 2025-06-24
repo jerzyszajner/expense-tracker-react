@@ -31,11 +31,19 @@ const TransactionItem = ({ transaction, type, onDelete, onEdit }) => {
       <td className={`${styles.cell} ${styles.categoryCell}`}>
         {transaction.category}
       </td>
-      <td className={styles.cell}>
-        <Button onClick={handleEdit} className={styles.editButton}>
+      <td className={styles.actionsCell}>
+        <Button
+          onClick={handleEdit}
+          className={styles.editButton}
+          variant="primary"
+        >
           Edit
         </Button>
-        <Button onClick={handleDelete} className={styles.deleteButton}>
+        <Button
+          onClick={handleDelete}
+          className={styles.deleteButton}
+          variant="danger"
+        >
           Delete
         </Button>
       </td>

@@ -3,16 +3,14 @@
 /* Main card container */
 .card {
   background: var(--card-color);
-  padding: var(--space-medium);
+  padding: var(--space-small);
   border-radius: var(--border-radius-medium);
   box-shadow: var(--box-shadow-base);
-  margin-bottom: var(--space-medium);
 }
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .card {
-    padding: var(--space-medium);
-    margin-bottom: var(--space-medium);
+    padding: var(--space-small);
   }
 }

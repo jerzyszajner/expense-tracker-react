@@ -1,6 +1,6 @@
 import { EXPENSE_CATEGORIES, INCOME_CATEGORIES } from "../constants/categories";
 
-// Filter transactions by category or month criteria
+// Custom hook for filtering transactions by category or month criteria
 export const useFilteredData = (data, filter, type) => {
   // Get appropriate categories for transaction type
   const categories =
