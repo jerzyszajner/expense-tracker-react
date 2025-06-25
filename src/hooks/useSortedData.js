@@ -8,22 +8,22 @@ export const useSortedData = (data, sort) => {
     case "title-asc":
       // A-Z
       sortedData.sort((a, b) =>
-        b.title.toLowerCase().localeCompare(a.title.toLowerCase())
+        a.title.toLowerCase().localeCompare(b.title.toLowerCase())
       );
       break;
     case "title-desc":
       // Z-A
       sortedData.sort((a, b) =>
-        a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+        b.title.toLowerCase().localeCompare(a.title.toLowerCase())
       );
       break;
     case "amount-asc":
       // Low to High
-      sortedData.sort((a, b) => parseFloat(a.amount) - parseFloat(b.amount));
+      sortedData.sort((a, b) => Number(a.amount) - Number(b.amount));
       break;
     case "amount-desc":
       // High to Low
-      sortedData.sort((a, b) => parseFloat(b.amount) - parseFloat(a.amount));
+      sortedData.sort((a, b) => Number(b.amount) - Number(a.amount));
       break;
     case "date-asc":
       // Old to New

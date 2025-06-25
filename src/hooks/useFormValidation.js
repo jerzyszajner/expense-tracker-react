@@ -15,10 +15,7 @@ export const useFormValidation = () => {
     // Amount validation
     if (!values.amount) {
       newErrors.amount = "Amount is required";
-    } else if (
-      isNaN(parseFloat(values.amount)) ||
-      parseFloat(values.amount) <= 0
-    ) {
+    } else if (isNaN(Number(values.amount)) || Number(values.amount) <= 0) {
       newErrors.amount = "Amount must be greater than 0";
     }
 
