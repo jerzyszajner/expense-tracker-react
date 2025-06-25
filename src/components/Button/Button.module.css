@@ -55,7 +55,6 @@
 
 /* General hover effects */
 .button:hover {
-    transform: translateY(-1px);
     box-shadow: var(--box-shadow-base);
 }
 

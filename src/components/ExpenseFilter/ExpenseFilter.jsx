@@ -15,11 +15,11 @@ const ExpenseFilter = ({ selectedFilter, onFilterChange, activeTab }) => {
     onFilterChange(event.target.value);
   };
 
-  // Render filter dropdown with categories and months
+  // Render filter dropdown
   return (
     <div className={styles.expenseFilter}>
       <label htmlFor="filter" className={styles.filterLabel}>
-        {/* Filter by Category or Month: */}
+        Filter:
       </label>
       <select
         id="filter"
@@ -29,13 +29,13 @@ const ExpenseFilter = ({ selectedFilter, onFilterChange, activeTab }) => {
         onChange={handleFilterChange}
       >
         <option value="">
-          Filter {activeTab === "expenses" ? "Expenses" : "Incomes"}
+          All {activeTab === "expenses" ? "Expenses" : "Incomes"}
         </option>
 
         <optgroup label="Categories">
           {categories.map((category) => (
             <option key={category} value={category}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {category}
             </option>
           ))}
         </optgroup>

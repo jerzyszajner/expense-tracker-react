@@ -2,22 +2,22 @@
 export const DEFAULT_CATEGORY_OPTION = "choose category";
 
 export const EXPENSE_CATEGORIES = [
-  "housing",
-  "utilities",
-  "grocery",
-  "transportation",
-  "clothing",
-  "entertainment",
-  "other",
+  "Housing",
+  "Utilities",
+  "Grocery",
+  "Transportation",
+  "Clothing",
+  "Entertainment",
+  "Other",
 ];
 
 export const INCOME_CATEGORIES = [
-  "salary",
-  "freelance",
-  "investment",
-  "bonus",
-  "gift",
-  "other",
+  "Salary",
+  "Freelance",
+  "Investment",
+  "Bonus",
+  "Gift",
+  "Other",
 ];
 
 export const MONTHS = [
@@ -33,4 +33,15 @@ export const MONTHS = [
   "October",
   "November",
   "December",
+];
+
+export const SORT_OPTIONS = [
+  { value: "title-asc", label: "Title A-Z" },
+  { value: "title-desc", label: "Title Z-A" },
+  { value: "amount-asc", label: "Amount Low-High" },
+  { value: "amount-desc", label: "Amount High-Low" },
+  { value: "date-asc", label: "Date Old-New" },
+  { value: "date-desc", label: "Date New-Old" },
+  { value: "category-asc", label: "Category A-Z" },
+  { value: "category-desc", label: "Category Z-A" },
 ];

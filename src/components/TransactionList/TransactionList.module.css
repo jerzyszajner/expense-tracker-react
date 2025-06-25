@@ -83,12 +83,12 @@
     }
 
     .tableContainer {
-        height: 43vh;
+        height: 37vh;
     }
 }
 
 @media screen and (max-width: 400px) {
     .tableContainer {
-        height: 37vh;
+        height: 30vh;
     }
 }

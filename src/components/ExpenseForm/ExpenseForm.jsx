@@ -57,9 +57,9 @@ const ExpenseForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
     }
 
     const expenseData = {
-      id: editing ? String(editing.id) : uuidv4(),
+      id: editing ? editing.id : uuidv4(),
       title: expenseFormData.title,
-      amount: parseFloat(expenseFormData.amount),
+      amount: Number(expenseFormData.amount),
       date: new Date(expenseFormData.date).toISOString(),
       category: expenseFormData.category,
     };
@@ -166,7 +166,7 @@ const ExpenseForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
           <option value={DEFAULT_CATEGORY_OPTION}>Choose Category</option>
           {EXPENSE_CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              {cat}
             </option>
           ))}
         </select>

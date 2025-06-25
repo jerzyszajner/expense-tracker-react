@@ -56,7 +56,6 @@
 
     .modalContent {
         max-height: 90vh;
-        margin: var(--space-small);
     }
 
     .modalHeader {

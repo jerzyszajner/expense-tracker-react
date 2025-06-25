@@ -63,7 +63,7 @@ body {
   --error-bg-light: #fdf2f2;
   --error-bg-hover: #fef2f2;
   --error-bg-gradient: #fee2e2;
-  --box-shadow-base: 0 5px 15px rgba(0, 0, 0, 0.5);
+  --box-shadow-base: 0 5px 15px rgba(0, 0, 0, 0.3);
 
   /* Typography */
   --font-family: 'Lato-Regular', sans-serif;

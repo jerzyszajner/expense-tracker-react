@@ -43,7 +43,7 @@ npm run dev
 
 - **Categorization**: Organize transactions by predefined categories (housing, utilities, grocery, transportation, etc. for expenses; salary, freelance, investment, etc. for income).
 
-- **Filtering & Sorting**: Filter transactions by category or month; view expenses and incomes separately.
+- **Filtering & Sorting**: Filter transactions by category or month; sort by title, amount, date, or category.
 
 - **Balance Summary**: Real-time calculation and display of total income, total expenses, and current balance with visual indicators.
 

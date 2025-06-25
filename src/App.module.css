@@ -11,12 +11,19 @@
     margin: 0 auto;
 }
 
-header {
+
+
+header,
+main,
+nav {
     display: flex;
     flex-direction: column;
     gap: var(--space-medium);
-    max-width: 30%;
     width: 100%;
+}
+
+header {
+    max-width: 25%;
 }
 
 /* Main title styling */
@@ -27,11 +34,7 @@ header {
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-medium);
     max-width: 70%;
-    width: 100%;
 }
 
 /* Section title styling */
@@ -58,8 +61,25 @@ main {
     width: 100%;
 }
 
+.filterSortContainer {
+    display: flex;
+    gap: var(--space-small);
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.filterSortSection {
+    display: flex;
+    gap: var(--space-small);
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .filterSection {
     width: 100%;
+    display: flex;
+    gap: var(--space-small);
+    flex-wrap: wrap;
 }
 
 /* Tablet responsive adjustments */
@@ -70,11 +90,8 @@ main {
     }
 
     header {
-        display: flex;
-        flex-direction: column;
         gap: var(--space-small);
-        max-width: 30%;
-        width: 100%;
+        max-width: 33%;
     }
 
     .tabContainer {
@@ -96,6 +113,7 @@ main {
         flex-direction: column;
     }
 
+    nav,
     header {
         display: flex;
         flex-direction: column;

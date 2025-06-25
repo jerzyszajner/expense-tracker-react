@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import useModal from "./hooks/useModal";
 import { useFilteredData } from "./hooks/useFilteredData";
+import { useSortedData } from "./hooks/useSortedData";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import IncomeForm from "./components/IncomeForm/IncomeForm";
 import ExpenseFilter from "./components/ExpenseFilter/ExpenseFilter";
+import SortSelector from "./components/SortSelector/SortSelector";
 import TransactionList from "./components/TransactionList/TransactionList";
 import BalanceSummary from "./components/BalanceSummary/BalanceSummary";
 import Modal from "./components/Modal/Modal";
@@ -18,6 +20,7 @@ function App() {
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
   const [incomes, setIncomes] = useLocalStorage("incomes", []);
   const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("");
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [activeTab, setActiveTab] = useState("expenses");
 
@@ -27,20 +30,25 @@ function App() {
   const deleteModal = useModal();
   const [itemToDelete, setItemToDelete] = useState(null);
 
-  // Filter data based on active tab and filter criteria
+  // Filter data based on active tab and criteria
   const filteredExpenses = useFilteredData(expenses, filter, "expenses");
   const filteredIncomes = useFilteredData(incomes, filter, "incomes");
+
+  // Sort filtered data
+  const sortedExpenses = useSortedData(filteredExpenses, sort);
+  const sortedIncomes = useSortedData(filteredIncomes, sort);
 
   // Helper functions to avoid repetition
   const getCurrentType = () =>
     activeTab === "expenses" ? "expense" : "income";
 
   const getCurrentTransactions = () =>
-    activeTab === "expenses" ? filteredExpenses : filteredIncomes;
+    activeTab === "expenses" ? sortedExpenses : sortedIncomes;
 
-  // Reset filter when switching tabs
+  // Reset filter and sort when switching tabs
   useEffect(() => {
     setFilter("");
+    setSort("");
   }, [activeTab]);
 
   // Add new transaction to appropriate list
@@ -148,13 +156,15 @@ function App() {
                 Incomes
               </Button>
             </div>
-
-            <div className={styles.filterSection}>
+          </Card>
+          <Card className={styles.filterSortContainer}>
+            <div className={styles.filterSortSection}>
               <ExpenseFilter
                 selectedFilter={filter}
                 onFilterChange={setFilter}
                 activeTab={activeTab}
               />
+              <SortSelector selectedSort={sort} onSortChange={setSort} />
             </div>
           </Card>
         </nav>
@@ -172,7 +182,7 @@ function App() {
         <section>
           <Card>
             <h2 className={styles.sectionTitle}>
-              Your {activeTab === "expenses" ? "Expenses" : "Incomes"}
+              Your {activeTab === "expenses" ? "Expenses" : "Incomes"}...
             </h2>
             {/* Transaction list */}
             <TransactionList

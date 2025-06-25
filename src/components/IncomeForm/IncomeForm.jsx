@@ -57,9 +57,9 @@ const IncomeForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
     }
 
     const incomeData = {
-      id: editing ? String(editing.id) : uuidv4(),
+      id: editing ? editing.id : uuidv4(),
       title: incomeFormData.title,
-      amount: parseFloat(incomeFormData.amount),
+      amount: Number(incomeFormData.amount),
       date: new Date(incomeFormData.date).toISOString(),
       category: incomeFormData.category,
     };
@@ -166,7 +166,7 @@ const IncomeForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
           <option value={DEFAULT_CATEGORY_OPTION}>Choose Category</option>
           {INCOME_CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              {cat}
             </option>
           ))}
         </select>
