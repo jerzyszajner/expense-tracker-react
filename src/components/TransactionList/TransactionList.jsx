@@ -6,10 +6,10 @@ const TransactionList = ({ transactions, type, onDelete, onEdit }) => {
   // Handle empty state display
   if (transactions.length === 0) {
     const message =
-      type === "expense"
+      type === "Expense"
         ? "No expenses found. Start by adding your first expense!"
         : "No incomes found. Start by adding your first income!";
-    const icon = type === "expense" ? "💸" : "💰";
+    const icon = type === "Expense" ? "💸" : "💰";
 
     return <EmptyMessage message={message} icon={icon} />;
   }

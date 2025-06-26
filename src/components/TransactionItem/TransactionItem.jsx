@@ -13,7 +13,7 @@ const TransactionItem = ({ transaction, type, onDelete, onEdit }) => {
   };
 
   // Dynamic styling based on transaction type
-  const isExpense = type === "expense";
+  const isExpense = type === "Expense";
   const amountPrefix = isExpense ? "-" : "+";
   const amountClass = isExpense ? styles.expenseAmount : styles.incomeAmount;
   const rowClass = isExpense ? styles.expenseRow : styles.incomeRow;

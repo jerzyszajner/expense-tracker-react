@@ -204,7 +204,7 @@ function App() {
         {activeTab === "expenses" ? (
           <ExpenseForm
             onAdd={(expense) => {
-              addTransaction(expense, "expense");
+              addTransaction(expense, "Expense");
               setTimeout(() => addModal.closeModal(), 1000);
             }}
             onCancelEdit={cancelAdding}
@@ -212,7 +212,7 @@ function App() {
         ) : (
           <IncomeForm
             onAdd={(income) => {
-              addTransaction(income, "income");
+              addTransaction(income, "Income");
               setTimeout(() => addModal.closeModal(), 1000);
             }}
             onCancelEdit={cancelAdding}
@@ -226,11 +226,11 @@ function App() {
         onClose={cancelEditing}
         title={`Edit ${editingTransaction?.type || "Transaction"}`}
       >
-        {editingTransaction?.type === "expense" ? (
+        {editingTransaction?.type === "Expense" ? (
           <ExpenseForm
             editing={editingTransaction}
             onEdit={(expense) => {
-              editTransaction(expense, "expense");
+              editTransaction(expense, "Expense");
               setTimeout(() => cancelEditing(), 1000);
             }}
             onCancelEdit={cancelEditing}
@@ -239,7 +239,7 @@ function App() {
           <IncomeForm
             editing={editingTransaction}
             onEdit={(income) => {
-              editTransaction(income, "income");
+              editTransaction(income, "Income");
               setTimeout(() => cancelEditing(), 1000);
             }}
             onCancelEdit={cancelEditing}
