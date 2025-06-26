@@ -32,13 +32,6 @@ const IncomeForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
         date: editing.date.split("T")[0],
         category: editing.category,
       });
-    } else {
-      setIncomeFormData({
-        title: "",
-        amount: "",
-        date: "",
-        category: DEFAULT_CATEGORY_OPTION,
-      });
     }
   }, [editing]);
 
@@ -72,25 +65,13 @@ const IncomeForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
       setSuccess("Income added successfully!");
     }
 
-    clearForm();
     setTimeout(() => setSuccess(""), 1000);
-  };
-
-  // Clear form fields
-  const clearForm = () => {
-    setIncomeFormData({
-      title: "",
-      amount: "",
-      date: "",
-      category: DEFAULT_CATEGORY_OPTION,
-    });
   };
 
   // Handle cancel action
   const handleCancel = () => {
     if (onCancelEdit) {
       onCancelEdit();
-      clearForm();
     }
   };
 

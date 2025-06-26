@@ -32,13 +32,6 @@ const ExpenseForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
         date: editing.date.split("T")[0],
         category: editing.category,
       });
-    } else {
-      setExpenseFormData({
-        title: "",
-        amount: "",
-        date: "",
-        category: DEFAULT_CATEGORY_OPTION,
-      });
     }
   }, [editing]);
 
@@ -72,25 +65,13 @@ const ExpenseForm = ({ onAdd, editing, onEdit, onCancelEdit }) => {
       setSuccess("Expense added successfully!");
     }
 
-    clearForm();
     setTimeout(() => setSuccess(""), 1000);
-  };
-
-  // Clear form fields
-  const clearForm = () => {
-    setExpenseFormData({
-      title: "",
-      amount: "",
-      date: "",
-      category: DEFAULT_CATEGORY_OPTION,
-    });
   };
 
   // Handle cancel action
   const handleCancel = () => {
     if (onCancelEdit) {
       onCancelEdit();
-      clearForm();
     }
   };
 
