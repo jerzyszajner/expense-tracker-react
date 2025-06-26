@@ -40,7 +40,7 @@ function App() {
 
   // Helper functions to avoid repetition
   const getCurrentType = () =>
-    activeTab === "expenses" ? "expense" : "income";
+    activeTab === "expenses" ? "Expense" : "Income";
 
   const getCurrentTransactions = () =>
     activeTab === "expenses" ? sortedExpenses : sortedIncomes;
@@ -53,7 +53,7 @@ function App() {
 
   // Add new transaction to appropriate list
   const addTransaction = (transaction, type) => {
-    if (type === "expense") {
+    if (type === "Expense") {
       setExpenses((prev) => [...prev, transaction]);
     } else {
       setIncomes((prev) => [...prev, transaction]);
@@ -62,7 +62,7 @@ function App() {
 
   // Remove transaction from appropriate list
   const deleteTransaction = (id, type) => {
-    if (type === "expense") {
+    if (type === "Expense") {
       setExpenses((prev) => prev.filter((item) => item.id !== id));
     } else {
       setIncomes((prev) => prev.filter((item) => item.id !== id));
@@ -71,7 +71,7 @@ function App() {
 
   // Update existing transaction
   const editTransaction = (updatedTransaction, type) => {
-    if (type === "expense") {
+    if (type === "Expense") {
       setExpenses((prev) =>
         prev.map((item) =>
           item.id === updatedTransaction.id ? updatedTransaction : item
@@ -256,8 +256,17 @@ function App() {
         onEscape={handleCancelDelete}
       >
         <ConfirmationDialog
-          message="Are you sure you want to delete"
-          itemName={itemToDelete?.title}
+          message={
+            <>
+              Are you sure you want to delete{" "}
+              <span className={styles.dangerTitle}>
+                "{itemToDelete?.title}"
+              </span>
+              ?
+              <br />
+              This action cannot be undone!
+            </>
+          }
           onConfirm={handleConfirmDelete}
           onCancel={handleCancelDelete}
         />

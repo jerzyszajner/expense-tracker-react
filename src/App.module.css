@@ -82,6 +82,12 @@ main {
     flex-wrap: wrap;
 }
 
+/* ConfirmationDialog styles */
+.dangerTitle {
+    color: var(--danger-color);
+    font-weight: bolder;
+}
+
 /* Tablet responsive adjustments */
 @media (max-width: 768px) {
     .app {

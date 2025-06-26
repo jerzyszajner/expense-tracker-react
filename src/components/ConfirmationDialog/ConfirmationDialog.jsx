@@ -3,7 +3,6 @@ import Button from "../Button/Button";
 
 const ConfirmationDialog = ({
   message,
-  itemName,
   onConfirm,
   onCancel,
   confirmText = "Delete",
@@ -15,11 +14,7 @@ const ConfirmationDialog = ({
   return (
     <div className={styles.bodyContent}>
       <div className={styles.icon}>{icon}</div>
-      <p className={styles.message}>
-        {message} "{itemName}"?
-        <br />
-        This action cannot be undone.
-      </p>
+      <p className={styles.message}>{message}</p>
       <div className={styles.buttonGroup}>
         <Button
           onClick={onConfirm}
